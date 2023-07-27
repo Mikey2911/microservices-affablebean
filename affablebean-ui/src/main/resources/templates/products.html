@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/masterLayout :: layout(~{::main})}">
+<body>
+<main role="main">
+    <div class="container mt-3 p-3">
+        <div class="row">
+            <div class="col-md-4 text-center p-5 d-flex flex-md-column">
+                <a href="#" th:href="@{/webui/products/category?id=1}" class="rounded my-1 bg-light py-2 px-5 btn btn-lg">Diary</a>
+                <a href="#" th:href="@{/webui/products/category?id=2}" class="rounded my-1 bg-light py-2 px-5 btn btn-lg">Meat</a>
+                <a href="#" th:href="@{/webui/products/category?id=3}" class="rounded my-1 bg-light py-2 px-5 btn btn-lg">Bakery</a>
+                <a href="#" th:href="@{/webui/products/category?id=4}" class="rounded my-1 bg-light py-2 px-5 btn btn-lg">Fruit &#38; vegetable</a>
+            </div>
+            <div class="col-md-8">
+                <div class="card rounded shadow bg-transparent" >
+                    <div class="card-header">
+                        <h3>Products</h3>
+                    </div>
+                    <table class="table table-striped ">
+                        <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>name</th>
+                            <th>price</th>
+                            <th>quantity</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="pro : ${products}">
+                            <td><img th:src="@{|/bootstrap/images/products/${pro.name}.png|}" th:alt="${pro.name}"></td>
+                            <td th:text="${pro.name}"></td>
+                            <td th:text="'$ ' + ${pro.price}"></td>
+                            <td><a href="#" th:href="@{|/webui/product/purchase?id=${pro.id}|}" class="btn btn-outline-success">Purchase</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
